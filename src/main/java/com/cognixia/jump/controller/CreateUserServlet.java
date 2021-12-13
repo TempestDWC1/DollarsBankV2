@@ -40,9 +40,9 @@ public class CreateUserServlet extends HttpServlet{
 		
 		// check all inputs and compile it into a hashmap
 		HashMap<String, String> errors = Validate.check(name, username, password, balance);
-		
-		// If errors is NOT empty then we need to so those errors to the user and not continue
-		if(!errors.isEmpty()) {
+
+		// If errors does have a specific key that shows there is an overall error then display the errors
+		if(errors.containsKey("error")) {
 			request.getSession().setAttribute("errors", errors);
 			request.getRequestDispatcher("createUser.jsp").forward(request, response);
 		
@@ -57,7 +57,10 @@ public class CreateUserServlet extends HttpServlet{
 			listOfUsers.put(username, user);
 			// replace the old list
 			request.getSession().setAttribute("users", listOfUsers);
-			
+
+			// will need to use a new LoginSevlet to to use the doGet
+			// otherwise LoginServlet doPost will automatically be called because this
+			// request is from a doPost
 			LoginServlet loginServlet = new LoginServlet();
 			// request LoginServlet
 			loginServlet.doGet(request, response);

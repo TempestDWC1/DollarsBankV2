@@ -9,23 +9,22 @@
 	
 	</head>
 	<body>
-		
+		<%
+        	String name = "";
+       		String username = "";
+       		String password = "";
+       		String balance = "";
+       		if(request.getSession().getAttribute("errors") != null){
+       			@SuppressWarnings("unchecked")
+        		HashMap<String, String> errors = (HashMap<String, String>)request.getSession().getAttribute("errors");
+        		name = errors.get("name");
+        		username = errors.get("username");
+        		password = errors.get("password");
+        		balance = errors.get("balance");
+       		}
+       	%>
 		<div class='container'>
 	        <form action="CreateUserServlet" method="POST">
-	        	<%
-		        	String name = "";
-	        		String username = "";
-	        		String password = "";
-	        		String balance = "";
-	        		if(request.getSession().getAttribute("errors") != null){
-	        			@SuppressWarnings("unchecked")
-		        		HashMap<String, String> errors = (HashMap<String, String>)request.getSession().getAttribute("errors");
-		        		name = errors.get("name");
-		        		username = errors.get("username");
-		        		password = errors.get("password");
-		        		balance = errors.get("balance");
-	        		}
-	        	%>
 	            <div class="mb-3">
 	                <label for="name" class="form-label">Name</label>
 	                <input type="text" class="form-control" id="name" name="name"/>

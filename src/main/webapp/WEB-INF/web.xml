@@ -25,6 +25,12 @@
   	<description></description>
   	<servlet-class>com.cognixia.jump.controller.CreateUserServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AccountServlet</servlet-name>
+  	<display-name>AccountServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cognixia.jump.controller.AccountServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MainServlet</servlet-name>
   	<url-pattern>/MainServlet</url-pattern>
@@ -36,5 +42,9 @@
   <servlet-mapping>
   	<servlet-name>CreateUserServlet</servlet-name>
   	<url-pattern>/CreateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AccountServlet</servlet-name>
+  	<url-pattern>/AccountServlet</url-pattern>
   </servlet-mapping>
 </web-app>

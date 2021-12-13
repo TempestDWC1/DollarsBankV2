@@ -27,17 +27,13 @@ public class LoginServlet extends HttpServlet{
 		request.getSession().setAttribute("error", "");
 		// request the login.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.include(request, response);
+		rd.forward(request, response);
 	}
 	
 	// will be used by login.jsp to send users with correct credentials to account.jsp
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-
-		// request the login.jsp
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.include(request, response);
 		
 		// make sure error is set to blank
 		request.getSession().setAttribute("error", "");
@@ -59,8 +55,14 @@ public class LoginServlet extends HttpServlet{
 			// check if username is correct and then check if password is correct
 			if(listOfUsers.containsKey(username) && 
 					listOfUsers.get(username).getPassword().equals(password)) {
-				
-				System.out.println("Logged In");	
+				// store the active user for AccountServlet
+				Customer user = listOfUsers.get(username);
+				request.getSession().setAttribute("user", user);
+				// will need to use a new AccountServlet to to use the doGet
+				// otherwise AccountServlet doPost will automatically be called because this
+				// request is from a doPost
+				AccountServlet as = new AccountServlet();
+				as.doGet(request, response);
 			}else {
 				// throw an error if credentials were wrong
 				request.getSession().setAttribute("error", "Incorrect username or password");
