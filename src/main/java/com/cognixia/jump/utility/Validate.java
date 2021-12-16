@@ -47,4 +47,19 @@ public class Validate {
 		return errors;
 	}
 	
+	// will be used by Deposit, Withdraw, and Transfer to check input
+	public static Boolean checkInput(String input) {
+		try {
+			// if you can successful parse a float then true
+			Float fl = Float.parseFloat(input);
+			// also quickly check if the number is negative
+			if(fl < 0) throw new Exception();
+			// if a float and not negative then good to go
+			return true;
+		}catch(Exception e) {
+			// if you can't then false
+			return false;
+		}
+	}
+	
 }

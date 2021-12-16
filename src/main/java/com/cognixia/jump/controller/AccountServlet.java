@@ -34,22 +34,27 @@ public class AccountServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
+
 		// check the value of the submit button pressed, if one is null then it wasn't pressed
 		if(request.getParameter("Deposit") != null) {
-			
-			
+			// move to DepositServlet
+			DepositServlet ds = new DepositServlet();
+			ds.doGet(request, response);
 		}else if(request.getParameter("Withdraw") != null) {
-			
+			// move to WithdrawServlet
+			WithdrawServlet ws = new WithdrawServlet();
+			ws.doGet(request, response);
 		}else if(request.getParameter("Transfer") != null) {
-			
+			TransferServlet ts = new TransferServlet();
+			ts.doGet(request, response);
 		}else if(request.getParameter("History") != null) {
-			
-		}else if(request.getParameter("Info") != null) {
-			
+			HistoryServlet hs = new HistoryServlet();
+			hs.doGet(request, response);
 		}else if(request.getParameter("SignOut") != null) {
 			// will need to use a new LoginSevlet to to use the doGet
 			// otherwise LoginServlet doPost will automatically be called because this
 			// request is from a doPost
+			System.out.println("Signout");
 			LoginServlet loginServlet = new LoginServlet();
 			// request LoginServlet
 			loginServlet.doGet(request, response);

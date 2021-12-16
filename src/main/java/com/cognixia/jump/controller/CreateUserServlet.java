@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cognixia.jump.model.Customer;
+import com.cognixia.jump.service.Transactions;
 import com.cognixia.jump.utility.Validate;
 
 /*
@@ -48,15 +49,26 @@ public class CreateUserServlet extends HttpServlet{
 		
 		// make sure there is a session, getSession(false) returns null if there is no session
 		} else if(request.getSession(false) != null){
-			// get the list of users
-			@SuppressWarnings("unchecked") // even though we check for a session it still goes "unchecked"
-			HashMap<String, Customer> listOfUsers = (HashMap<String, Customer>) request.getSession().getAttribute("users");
+//			// get the list of users
+//			@SuppressWarnings("unchecked") // even though we check for a session it still goes "unchecked"
+//			HashMap<String, Customer> listOfUsers = (HashMap<String, Customer>) request.getSession().getAttribute("users");
+			
 			// make a new Customer object
 			Customer user = new Customer(name, username, password, Float.parseFloat(balance));
-			// Add the new user
-			listOfUsers.put(username, user);
-			// replace the old list
-			request.getSession().setAttribute("users", listOfUsers);
+			// get the transactions
+			Transactions transactions = (Transactions)request.getSession().getAttribute("transactions");
+			// add the new user and addUser handles logging the transaction
+			transactions.addUser(user);
+			
+//			// Add the new user
+//			listOfUsers.put(username, user);
+//			// get the history to log the initial balance
+//			@SuppressWarnings("unchecked")
+//			HashMap<String, ArrayList<String>> history = (HashMap<String, ArrayList<String>>)request.getSession().getAttribute("history");
+//			// make an arraylist for the new history
+//			ArrayList<String> initial = new ArrayList<>();
+//			initial.add("Initial Balance: " + balance);
+//			history.put(username, initial);
 
 			// will need to use a new LoginSevlet to to use the doGet
 			// otherwise LoginServlet doPost will automatically be called because this

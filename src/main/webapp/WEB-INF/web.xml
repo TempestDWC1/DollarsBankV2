@@ -31,6 +31,30 @@
   	<description></description>
   	<servlet-class>com.cognixia.jump.controller.AccountServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DepositServlet</servlet-name>
+  	<display-name>DepositServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cognixia.jump.controller.DepositServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>WithdrawServlet</servlet-name>
+  	<display-name>WithdrawServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cognixia.jump.controller.WithdrawServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TransferServlet</servlet-name>
+  	<display-name>TransferServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cognixia.jump.controller.TransferServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HistoryServlet</servlet-name>
+  	<display-name>HistoryServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.cognixia.jump.controller.HistoryServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MainServlet</servlet-name>
   	<url-pattern>/MainServlet</url-pattern>
@@ -46,5 +70,21 @@
   <servlet-mapping>
   	<servlet-name>AccountServlet</servlet-name>
   	<url-pattern>/AccountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DepositServlet</servlet-name>
+  	<url-pattern>/DepositServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WithdrawServlet</servlet-name>
+  	<url-pattern>/WithdrawServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TransferServlet</servlet-name>
+  	<url-pattern>/TransferServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HistoryServlet</servlet-name>
+  	<url-pattern>/HistoryServlet</url-pattern>
   </servlet-mapping>
 </web-app>
